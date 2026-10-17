@@ -1,0 +1,15 @@
+# TP6 - Hive et Data Warehouse distribué - Groupe 6
+# Installation :  pip install -r requirements.txt
+#
+# NE PAS installer pyhive[hive] ni sasl : le module sasl exige un compilateur
+# C++ sous Windows et il est inutile, HiveServer2 étant configuré en NOSASL
+# dans hadoop-hive.env.
+
+pyhive>=0.7.0        # client HiveServer2
+thrift>=0.16.0       # transport Thrift utilisé par PyHive
+                     # (versions souples : Python 3.13 exige des roues récentes)
+future>=1.0.0        # dépendance de PyHive
+pandas>=2.0          # manipulation des résultats
+matplotlib>=3.7      # graphiques du rapport
+duckdb>=1.0          # second moteur SQL, pour contrôler les résultats de Hive
+numpy>=1.24          # requis par le générateur de données de l'enseignant

@@ -1,0 +1,6 @@
+job,nb_cles,duree_s,lignes_mappees,lignes_rejetees,fichier_entree
+transactions_par_ville,8,1.87,500000,0,transactions_medium.csv
+ca_par_ville,8,2.68,500000,0,transactions_medium.csv
+quantite_par_produit,21,2.33,500000,0,transactions_medium.csv
+ca_par_categorie,5,2.77,500000,0,transactions_medium.csv
+transactions_par_paiement,5,1.84,500000,0,transactions_medium.csv

@@ -1,0 +1,26 @@
+# ---- Données ----------------------------------------------------------------
+# Les trois volumes pèsent environ 800 Mo et sont entièrement reproductibles :
+#   small et medium  : fournis par l'enseignant (Donnees_TP_BigData/)
+#   big              : scripts/00_preparer_donnees.ps1 (seed 303)
+# Ils n'ont donc rien à faire dans l'historique Git.
+data/*.csv
+data/*.gz
+
+# ---- Sorties volumineuses ou régénérables -----------------------------------
+resultats/analyse_hive.log
+resultats/hive_hdfs/
+__pycache__/
+*.pyc
+
+# ---- Environnement virtuel Python -------------------------------------------
+.venv/
+venv/
+
+# ---- Fichiers temporaires bureautiques --------------------------------------
+~$*
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Journaux
+*.log

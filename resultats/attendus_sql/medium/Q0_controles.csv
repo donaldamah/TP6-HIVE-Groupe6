@@ -1,0 +1,2 @@
+nb_lignes,nb_ids_distincts,montants_incoherents,remises_hors_bornes,promo0_avec_remise,stocks_incoherents,nb_villes,nb_produits,nb_modes_paiement,premiere_transaction,derniere_transaction,ca_total
+500000,500000,0.0,0.0,0.0,0.0,8,21,5,2024-01-01 00:03:00,2025-12-30 23:55:00,4596094050.0

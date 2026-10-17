@@ -1,0 +1,8 @@
+jour_semaine,nb_transactions,ca_total,panier_moyen,ordre
+Monday,1393,12628145.0,9065.43,1
+Tuesday,1436,14119682.5,9832.65,2
+Wednesday,1410,13292090.0,9427.01,3
+Thursday,1416,12590682.5,8891.72,4
+Friday,1397,12472030.0,8927.72,5
+Saturday,1446,12997810.0,8988.8,6
+Sunday,1502,13825752.5,9204.9,7
