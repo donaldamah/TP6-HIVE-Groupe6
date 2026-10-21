@@ -52,6 +52,7 @@ TP6_Hive_Groupe6/
 │   ├── tp6_hive.py                      pilotage Hive, benchmark, contrôles, graphiques
 │   ├── valider_sql.py                   mêmes requêtes sous DuckDB : les résultats attendus
 │   ├── comparer_resultats.py            comparateur générique de dossiers de CSV
+│   ├── comparer_groupe5.py              contrôle croisé avec les références livrées par le Groupe 5
 │   ├── mapper.py / reducer.py           référence MapReduce (Hadoop Streaming)
 │   └── lancer_reference_mapreduce.sh    Map → Shuffle/Sort → Reduce en pipes Unix
 ├── scripts/                             00 à 03, préparation puis exécution
@@ -93,7 +94,7 @@ L'arborescence respecte celle imposée au Groupe 2 :
    results/{mapreduce,hive,spark,ml}/     sorties de chaque groupe
 ```
 
-**Elle a été créée par le Groupe 6**, le Groupe 2 n'ayant transmis aucun livrable. Cette reconstruction est documentée dans `docs/anomalies_et_divergences.md`, comme l'exige la règle de transmission.
+**Elle a été créée par le Groupe 6**, le Groupe 2 n'ayant transmis aucun livrable au moment de la construction. Cette reconstruction est documentée dans `docs/anomalies_et_divergences.md`, comme l'exige la règle de transmission. Le rendu du Groupe 5, reçu le 20/10/2026, emploie exactement les mêmes chemins : la structure recréée est donc conforme.
 
 ## Modèle de données
 
@@ -114,6 +115,12 @@ La consigne 14 de l'énoncé impose que toute valeur soit contrôlée par rappor
 | MapReduce | `mapper.py` \| `sort` \| `reducer.py` | référence du modèle Map/Reduce |
 
 `python/comparer_resultats.py` compare deux dossiers de CSV ligne à ligne, avec une tolérance de 0,01 FCFA, et produit un rapport `PASS`/`FAIL` par fichier.
+
+`python/comparer_groupe5.py` confronte nos sorties aux références du Groupe 3 telles que le Groupe 5 les a rejouées sous YARN, sur les trois volumes : **15/15, écart maximal 0**. L'option `--md5` vérifie en plus que nos jeux de données sont identiques bit à bit aux leurs.
+
+```powershell
+python python\comparer_groupe5.py --md5
+```
 
 **Résultats vérifiés par exécution** (jeu medium, 500 000 transactions, 13/10/2026) :
 

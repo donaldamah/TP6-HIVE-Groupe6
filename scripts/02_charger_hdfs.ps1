@@ -5,9 +5,13 @@
 # Cree l'arborescence du Data Lake et y charge les trois volumes.
 #
 # ANOMALIE DE TRANSMISSION : cette arborescence est normalement livree par le
-# Groupe 2. Au 13/10/2026 aucun livrable amont n'a ete transmis, le Groupe 6
+# Groupe 2. Au 13/10/2026 aucun livrable amont n'avait ete transmis, le Groupe 6
 # la recree donc a l'identique de la structure imposee dans l'enonce. La
 # reconstruction est documentee, elle n'est pas silencieuse.
+#
+# Mise a jour du 20/10/2026 : le rendu du Groupe 5 emploie exactement les memes
+# chemins (/datalake/raw/transactions/{small,medium,big}/). La structure recreee
+# ici est donc conforme a celle utilisee en amont.
 #
 #   /datalake/
 #      raw/transactions/{small,medium,big}/   donnees sources, jamais modifiees

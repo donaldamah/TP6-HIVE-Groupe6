@@ -24,3 +24,12 @@ Thumbs.db
 
 # Journaux
 *.log
+
+# ---- Dossier de mise au rebut (local) ---------------------------------------
+_poubelle/
+
+# ---- Archive de livraison au Groupe 7 (regenerable) -------------------------
+*.zip
+
+# ---- Script local de publication --------------------------------------------
+pousser_github.ps1

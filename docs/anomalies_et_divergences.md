@@ -14,9 +14,15 @@ Tout ce qui suit a été **vérifié par exécution**, pas supposé. Chaque cons
 
 ## 1. Anomalies de transmission entre groupes
 
-### 1.1 Aucun livrable amont n'a été transmis
+### 1.1 Le livrable amont est arrivé le 20/10/2026, après la construction du projet
 
-À la date de rédaction (13/10/2026), les Groupes 1 à 5 n'ont transmis aucun livrable : ni Data Lake HDFS (Groupe 2), ni résultats de référence MapReduce (Groupe 3), ni sorties HDFS des jobs Hadoop Streaming (Groupe 4), ni `benchmark_yarn.csv` (Groupe 5). Le Groupe 4 n'avait pas encore présenté.
+**Mise à jour du 20/10/2026.** Le Groupe 5 a transmis son rendu (`group5_yarn`) : les références MapReduce des Groupes 3 et 4 pour les trois volumes, les empreintes MD5 des jeux de données, le benchmark de ressources YARN et ses journaux. Ce rendu n'a pas encore été présenté au jury : il n'est donc pas validé, et nous le traitons comme une vérification croisée, pas comme une autorité.
+
+Le contrôle est automatisé par `python/comparer_groupe5.py` et donne **15 concordances sur 15** (small, medium, big ; 5 jobs par volume ; écart maximal 0). L'option `--md5` ajoute la vérification que nos trois jeux de données sont **identiques bit à bit** à ceux du Groupe 3, y compris le `big` que nous avions généré nous-mêmes. Rapport : `resultats/comparaison_hive_vs_groupe5.csv`.
+
+Ce qui suit décrit la situation telle qu'elle était au moment de la construction du projet, et reste la justification de nos choix.
+
+À la date de construction (13/10/2026), les Groupes 1 à 5 n'avaient transmis aucun livrable : ni Data Lake HDFS (Groupe 2), ni résultats de référence MapReduce (Groupe 3), ni sorties HDFS des jobs Hadoop Streaming (Groupe 4), ni `benchmark_yarn.csv` (Groupe 5). Le Groupe 4 n'avait pas encore présenté.
 
 **Ce que le Groupe 6 a fait, et qui doit être su :**
 
@@ -26,7 +32,7 @@ Tout ce qui suit a été **vérifié par exécution**, pas supposé. Chaque cons
 | Résultats de référence MapReduce (Groupes 3 et 4) | Réimplémentés en Hadoop Streaming réel : `mapper.py`, `reducer.py`, exécutés en Map → Shuffle/Sort → Reduce | `python/mapper.py`, `python/reducer.py` |
 | Jeu `transactions_big` | Généré avec le générateur fourni par l'enseignant, seed 303 | `scripts/00_preparer_donnees.ps1` |
 
-**Limite à énoncer en soutenance :** nos références MapReduce sont les nôtres. Elles valident la *logique analytique* de Hive, pas la chaîne Hadoop du Groupe 4. Lorsque celui-ci livrera ses sorties, il suffira de les déposer dans `resultats/reference_mapreduce/` sous les noms `ref_<job>.csv` : `python/comparer_resultats.py` les utilisera sans modification de code.
+**Cette limite est levée depuis le 20/10/2026.** Nos références MapReduce restaient les nôtres : elles validaient la *logique analytique* de Hive, pas la chaîne Hadoop réelle. Les sorties du Groupe 5, produites par de vrais jobs Hadoop Streaming sous YARN, concordent avec les nôtres sur les trois volumes — la chaîne complète est donc vérifiée, et pas seulement notre raisonnement. La seule réserve qui demeure : ce travail n'est pas encore passé devant le jury.
 
 **Pourquoi un vrai Hadoop Streaming et non une agrégation pandas :** une agrégation pandas aurait comparé Hive à pandas. Le pipeline `mapper.py | sort | reducer.py` reproduit le modèle de calcul du Groupe 3 et le script est exécutable tel quel sur Hadoop (`-mapper mapper.py -combiner reducer.py -reducer reducer.py`) : les chiffres seront donc directement confrontables.
 
@@ -101,7 +107,7 @@ Les jeux `small` et `medium` fournis par l'enseignant **ne sont pas reproductibl
 | medium | 500 000 | 4 596 094 050,0 | 9 192,2 |
 | big | 5 000 000 | 45 979 512 357,5 | 9 196,0 |
 
-Le jeu `big` du Groupe 6 a été généré avec le seed documenté 303 : **tout groupe relançant `python generateur_donnees.py --n 5000000 --seed 303` obtiendra un fichier identique au nôtre.**
+Le jeu `big` du Groupe 6 a été généré avec le seed documenté 303 : **tout groupe relançant `python generateur_donnees.py --n 5000000 --seed 303` obtiendra un fichier identique au nôtre.** Vérifié le 20/10/2026 : l'empreinte MD5 de notre `big` décompressé (`ea57ad7e97c0b4f6ca49296cb204e933`) est celle que le Groupe 5 publie pour le fichier du Groupe 3. Les empreintes de `small` et `medium` concordent également. Les trois jeux sont donc les mêmes fichiers, pas seulement des tirages comparables — ce qui donne son sens à la concordance des totaux.
 
 ---
 
